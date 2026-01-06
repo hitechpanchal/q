@@ -11,7 +11,7 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
-  background: var(--my-black);
+  /* background: var(--my-black); */
   background: radial-gradient(
     circle,
     rgba(63, 63, 63, 1) 0%,
