@@ -50,11 +50,28 @@ h3 {
   font-optical-sizing: auto;
   font-variation-settings: "wght" 300, "wdth" 75;
   border-bottom: 2px solid whitesmoke;
+  animation: focus-in-contract 2s linear;
+  transition: transform 1s ease;
   letter-spacing: 1px;
 }
+
+h3::first-letter {
+  font-family: "Roboto", sans-serif;
+  font-weight: 600;
+  font-size: 100%;
+  color: var(--my-yellow);
+  font-optical-sizing: auto;
+  font-variation-settings: "ital" 0;
+}
+
 h3:hover {
   color: whitesmoke;
   border-bottom: 2px solid var(--my-blue);
+  transform: scale(1.1);
+}
+
+h3:hover::first-letter {
+  color: whitesmoke;
 }
 
 li {
