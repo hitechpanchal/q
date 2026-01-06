@@ -3,6 +3,7 @@
 :root {
   --my-blue: #006aff;
   --my-yellow: #ffd700;
+  --my-black: #121212;
 }
 html {
   box-sizing: border-box;
@@ -10,7 +11,7 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
-  background: #121212;
+  background: var(--my-black);
   background: radial-gradient(
     circle,
     rgba(63, 63, 63, 1) 0%,
@@ -142,7 +143,7 @@ li {
   justify-content: center;
   margin: auto 1%;
   margin-bottom: 100px;
-  background-color: #171717;
+  background-color: #var(--my-black);
   padding: 15px;
   border-radius: 5px;
   box-shadow: 0 4px 30px rgb(0, 106, 255, 0.2);
