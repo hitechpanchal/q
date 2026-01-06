@@ -10,11 +10,11 @@ html {
 body {
   min-height: 100vh;
   margin: 0;
-  background: #3f3f3f;
+  background: #121212;
   background: radial-gradient(
     circle,
     rgba(63, 63, 63, 1) 0%,
-    rgba(10, 10, 10, 1) 100%
+    rgba(18, 18, 18, 1) 100%
   );
 
   color: var(--my-yellow);
