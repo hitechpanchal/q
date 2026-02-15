@@ -8,10 +8,12 @@
 html {
   box-sizing: border-box;
 }
+*, *:before, *:after {
+  box-sizing: inherit;
+}
 body {
   min-height: 100vh;
   margin: 0;
-  /* background: var(--my-black); */
   background: radial-gradient(
     circle,
     rgba(63, 63, 63, 1) 0%,
@@ -20,11 +22,7 @@ body {
 
   color: var(--my-yellow);
 }
-.cen {
-  text-align: center;
-  margin-left: auto;
-  margin-right: auto;
-}
+
 a {
   text-decoration: none;
   color: #0033ff;
@@ -89,8 +87,6 @@ li {
   left: 0;
   bottom: 0;
   width: 100%;
-  /* height: 50px; */
-  /* border-top: var(--my-yellow) 2px solid; */
   text-align: center;
   padding: 0px;
   font-family: monospace;
@@ -119,7 +115,6 @@ li {
   color: #2e2725;
   flex-direction: row;
   width: auto;
-  /* padding: 1%; */
   border-right: 5px solid var(--my-blue);
   border-bottom-left-radius: 10px;
   border-top-left-radius: 10px;
@@ -129,15 +124,12 @@ li {
   overflow-y: scroll;
 }
 .unit {
-  /* display: block; */
-  /* margin: 10px auto; */
   text-align: center;
   width: auto;
   height: auto;
 }
 .container {
   display: grid;
-  /* grid-template-columns: 233px 233px 233px 233px; */
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   grid-template-rows: 1fr;
   column-gap: 30px;
@@ -150,59 +142,3 @@ li {
   border-radius: 5px;
   box-shadow: 0 4px 30px rgb(0, 106, 255, 0.2);
 }
-
-/* @media screen and (max-width: 1680px) {
-  .container {
-    display: grid;
-    grid-template-columns: repeat(5, 2fr);
-    grid-template-rows: auto;
-    column-gap: 30px;
-    row-gap: 20px;
-    justify-content: center;
-  }
-}
-
-@media screen and (max-width: 1440px) {
-  .container {
-    display: grid;
-    grid-template-columns: repeat(4, 3fr);
-    grid-template-rows: auto;
-    column-gap: 30px;
-    row-gap: 20px;
-    justify-content: center;
-  }
-}
-
-@media screen and (max-width: 1024px) {
-  .container {
-    display: grid;
-    grid-template-columns: repeat(3, 4fr);
-    grid-template-rows: 1fr;
-    column-gap: 30px;
-    row-gap: 20px;
-    justify-content: center;
-  }
-}
-
-@media screen and (max-width: 800px) {
-  .container {
-    display: grid;
-    grid-template-columns: repeat(2, 2fr);
-    grid-template-rows: 1fr;
-    column-gap: 30px;
-    row-gap: 20px;
-    justify-content: center;
-  }
-}
-
-@media screen and (max-width: 720px) {
-  .container {
-    display: grid;
-    grid-template-columns: 12fr;
-    grid-template-rows: 1fr;
-    column-gap: 30px;
-    row-gap: 20px;
-    justify-content: center;
-  }
-} 
-*/
