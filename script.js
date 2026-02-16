@@ -16,7 +16,6 @@ const data = [
     id: "books",
     title: "Books",
     links: [
-      { name: "goodReads", url: "https://www.goodreads.com/" },
       { name: "archiveORG", url: "https://archive.org/" },
       { name: "googlePlayBooks", url: "https://play.google.com/books/ebooks" },
       { name: "MobileRead", url: "https://www.mobileread.com/" },
@@ -155,6 +154,7 @@ const data = [
     id: "social",
     title: "Social",
     links: [
+      { name: "goodReads", url: "https://www.goodreads.com/" },
       { name: "VK", url: "https://vk.com/feed" },
       { name: "Instagram", url: "https://www.instagram.com" },
     ],
@@ -178,7 +178,7 @@ function renderSections() {
     const sectionDiv = document.createElement("div");
     sectionDiv.className = "unit";
     sectionDiv.id = section.id;
-    
+
     const h3 = document.createElement("h3");
     h3.textContent = section.title;
     sectionDiv.appendChild(h3);
