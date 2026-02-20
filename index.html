@@ -14,39 +14,13 @@
         }
       })();
     </script>
+    <script src="script.js" defer></script>
   </head>
 
   <body>
-    <script>
-      const setTheme = (theme) => {
-        const html = document.documentElement;
-        if (theme === 'system') {
-          html.removeAttribute('data-theme');
-        } else {
-          html.setAttribute('data-theme', theme);
-        }
-        localStorage.setItem('theme', theme);
-        
-        // Update Active State in Drawer
-        document.querySelectorAll('.theme-item').forEach(item => {
-          item.classList.toggle('active', item.getAttribute('data-theme-id') === theme);
-        });
-        
-        // Auto-close hamburger menu if it's open
-        const navToggle = document.getElementById('nav-toggle');
-        if (navToggle) navToggle.checked = false;
-      };
-
-      // Sync active theme on load
-      window.addEventListener('DOMContentLoaded', () => {
-        const theme = localStorage.getItem('theme') || 'system';
-        setTheme(theme);
-      });
-    </script>
-
   <nav class="navbar">
     <div class="nav-container">
-      <div class="nav-brand" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">hitechpanchal</div>
+      <div class="nav-brand">hitechpanchal</div>
       
       <input type="checkbox" id="nav-toggle" class="nav-toggle">
       <label for="nav-toggle" class="nav-toggle-label">
@@ -57,101 +31,109 @@
 
       <div class="nav-menu">
         <div class="theme-drawer-content">
-          <h4 class="drawer-header">Themes</h4>
+          <div class="drawer-header-area">
+            <h4 class="drawer-header">Themes</h4>
+            <div class="search-container">
+              <input type="text" id="theme-search" placeholder="Search themes..." oninput="filterThemes()">
+            </div>
+            <div class="filter-tabs">
+              <button class="filter-tab active" data-filter="all" onclick="setFilterTab(this)">All</button>
+              <button class="filter-tab" data-filter="light" onclick="setFilterTab(this)">Light</button>
+              <button class="filter-tab" data-filter="dark" onclick="setFilterTab(this)">Dark</button>
+            </div>
+          </div>
           
-          <div class="theme-group">
-            <h5>Light</h5>
-            <div class="theme-list">
-              <button class="theme-item" onclick="setTheme('pure-white')" data-theme-id="pure-white">
-                <span class="swatch" style="background: #ffffff; border: 1px solid #ddd;"></span>
-                Pure White
-              </button>
-              <button class="theme-item" onclick="setTheme('light')" data-theme-id="light">
-                <span class="swatch" style="background: #fdfcfb;"></span>
-                Pastel
-              </button>
-              <button class="theme-item" onclick="setTheme('zen')" data-theme-id="zen">
-                <span class="swatch" style="background: #f4f1ea;"></span>
-                Zen
-              </button>
-              <button class="theme-item" onclick="setTheme('solarized-light')" data-theme-id="solarized-light">
-                <span class="swatch" style="background: #fdf6e3;"></span>
-                Solarized
-              </button>
-              <button class="theme-item" onclick="setTheme('forest-light')" data-theme-id="forest-light">
-                <span class="swatch" style="background: #f1f3f0;"></span>
-                Forest
-              </button>
-              <button class="theme-item" onclick="setTheme('github-light')" data-theme-id="github-light">
-                <span class="swatch" style="background: #ffffff; border: 1px solid #0366d6;"></span>
-                GitHub
-              </button>
-              <button class="theme-item" onclick="setTheme('quiet-light')" data-theme-id="quiet-light">
-                <span class="swatch" style="background: #f5f5f5;"></span>
-                Quiet
-              </button>
-              <button class="theme-item" onclick="setTheme('kimbie-light')" data-theme-id="kimbie-light">
-                <span class="swatch" style="background: #fbebd4;"></span>
-                Kimbie
-              </button>
-              <button class="theme-item" onclick="setTheme('monokai-light')" data-theme-id="monokai-light">
-                <span class="swatch" style="background: #fafafa;"></span>
-                Monokai
-              </button>
-              <button class="theme-item" onclick="setTheme('red-light')" data-theme-id="red-light">
-                <span class="swatch" style="background: #7d0000;"></span>
-                Red
-              </button>
-            </div>
-          </div>
+          <div class="theme-grid">
+            <!-- SPECIAL -->
+            <button class="theme-card system-card" onclick="setTheme('system')" data-theme-id="system" data-theme-type="all">
+              <div class="palette-preview system-preview"></div>
+              <span class="theme-name">System</span>
+            </button>
 
-          <div class="theme-group">
-            <h5>Dark</h5>
-            <div class="theme-list">
-              <button class="theme-item" onclick="setTheme('pure-black')" data-theme-id="pure-black">
-                <span class="swatch" style="background: #000000; border: 1px solid #333;"></span>
-                Pure Black
-              </button>
-              <button class="theme-item" onclick="setTheme('dark')" data-theme-id="dark">
-                <span class="swatch" style="background: #1a1a1a;"></span>
-                Theo Soti
-              </button>
-              <button class="theme-item" onclick="setTheme('monokai')" data-theme-id="monokai">
-                <span class="swatch" style="background: #272822;"></span>
-                Monokai
-              </button>
-              <button class="theme-item" onclick="setTheme('solarized-dark')" data-theme-id="solarized-dark">
-                <span class="swatch" style="background: #002b36;"></span>
-                Solarized
-              </button>
-              <button class="theme-item" onclick="setTheme('cyberpunk')" data-theme-id="cyberpunk">
-                <span class="swatch" style="background: #0d0221;"></span>
-                Cyberneon
-              </button>
-              <button class="theme-item" onclick="setTheme('github-dark')" data-theme-id="github-dark">
-                <span class="swatch" style="background: #0d1117;"></span>
-                GitHub
-              </button>
-              <button class="theme-item" onclick="setTheme('one-dark-pro')" data-theme-id="one-dark-pro">
-                <span class="swatch" style="background: #282c34;"></span>
-                One Dark
-              </button>
-              <button class="theme-item" onclick="setTheme('dracula')" data-theme-id="dracula">
-                <span class="swatch" style="background: #282a36;"></span>
-                Dracula
-              </button>
-              <button class="theme-item" onclick="setTheme('night-owl')" data-theme-id="night-owl">
-                <span class="swatch" style="background: #011627;"></span>
-                Night Owl
-              </button>
-              <button class="theme-item" onclick="setTheme('cobalt2')" data-theme-id="cobalt2">
-                <span class="swatch" style="background: #193549;"></span>
-                Cobalt2
-              </button>
-            </div>
-          </div>
+            <!-- LIGHT THEMES -->
+            <button class="theme-card" onclick="setTheme('pure-white')" data-theme-id="pure-white" data-theme-type="light">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #eeeeee 20%, #333333 40%, #006aff 60%, #ff4d00 80%, #006aff 100%);"></div>
+              <span class="theme-name">Pure White</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('light')" data-theme-id="light" data-theme-type="light">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #fdfcfb 20%, #2d3436 40%, #74b9ff 60%, #fab1a0 80%, #74b9ff 100%);"></div>
+              <span class="theme-name">Pastel</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('zen')" data-theme-id="zen" data-theme-type="light">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #f4f1ea 20%, #4a4a4a 40%, #8fa3a3 60%, #bdae82 80%, #8fa3a3 100%);"></div>
+              <span class="theme-name">Zen</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('solarized-light')" data-theme-id="solarized-light" data-theme-type="light">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #fdf6e3 20%, #586e75 40%, #268bd2 60%, #b58900 80%, #268bd2 100%);"></div>
+              <span class="theme-name">Solarized</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('forest-light')" data-theme-id="forest-light" data-theme-type="light">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #f1f3f0 20%, #2d3e30 40%, #7ba28a 60%, #9a8a78 80%, #7ba28a 100%);"></div>
+              <span class="theme-name">Forest</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('github-light')" data-theme-id="github-light" data-theme-type="light">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #dddddd 20%, #24292e 40%, #0366d6 60%, #b08800 80%, #0366d6 100%);"></div>
+              <span class="theme-name">GitHub</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('quiet-light')" data-theme-id="quiet-light" data-theme-type="light">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #f5f5f5 20%, #333333 40%, #705697 60%, #a37561 80%, #705697 100%);"></div>
+              <span class="theme-name">Quiet</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('kimbie-light')" data-theme-id="kimbie-light" data-theme-type="light">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #fbebd4 20%, #84613d 40%, #f06431 60%, #dc3958 80%, #f06431 100%);"></div>
+              <span class="theme-name">Kimbie</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('monokai-light')" data-theme-id="monokai-light" data-theme-type="light">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #fafafa 20%, #272822 40%, #66d9ef 60%, #f92672 80%, #f92672 100%);"></div>
+              <span class="theme-name">Monokai L</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('red-light')" data-theme-id="red-light" data-theme-type="light">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #fffafa 20%, #7d0000 40%, #ff4500 60%, #cc3333 80%, #ff4500 100%);"></div>
+              <span class="theme-name">Red Light</span>
+            </button>
 
-          <button class="theme-item system-btn" onclick="setTheme('system')" data-theme-id="system"> Sys </button>
+            <!-- DARK THEMES -->
+            <button class="theme-card" onclick="setTheme('pure-black')" data-theme-id="pure-black" data-theme-type="dark">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #333333 20%, #dddddd 40%, #00f0ff 60%, #ff00de 80%, #00f0ff 100%);"></div>
+              <span class="theme-name">Pure Black</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('dark')" data-theme-id="dark" data-theme-type="dark">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #333333 20%, #eeeeee 40%, #006aff 60%, #ff9d00 80%, #006aff 100%);"></div>
+              <span class="theme-name">Theo Soti</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('monokai')" data-theme-id="monokai" data-theme-type="dark">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #272822 20%, #f8f8f2 40%, #a6e22e 60%, #f92672 80%, #a6e22e 100%);"></div>
+              <span class="theme-name">Monokai</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('solarized-dark')" data-theme-id="solarized-dark" data-theme-type="dark">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #002b36 20%, #839496 40%, #268bd2 60%, #b58900 80%, #268bd2 100%);"></div>
+              <span class="theme-name">Solarized D</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('cyberpunk')" data-theme-id="cyberpunk" data-theme-type="dark">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #0d0221 20%, #00f0ff 40%, #ff00ff 60%, #fff01f 80%, #ff00ff 100%);"></div>
+              <span class="theme-name">Cyberneon</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('github-dark')" data-theme-id="github-dark" data-theme-type="dark">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #0d1117 20%, #c9d1d9 40%, #58a6ff 60%, #f0883e 80%, #58a6ff 100%);"></div>
+              <span class="theme-name">GitHub D</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('one-dark-pro')" data-theme-id="one-dark-pro" data-theme-type="dark">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #282c34 20%, #abb2bf 40%, #61afef 60%, #e06c75 80%, #61afef 100%);"></div>
+              <span class="theme-name">One Dark</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('dracula')" data-theme-id="dracula" data-theme-type="dark">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #282a36 20%, #f8f8f2 40%, #bd93f9 60%, #ff79c6 80%, #bd93f9 100%);"></div>
+              <span class="theme-name">Dracula</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('night-owl')" data-theme-id="night-owl" data-theme-type="dark">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #011627 20%, #d6deeb 40%, #82aaff 60%, #ecc48d 80%, #82aaff 100%);"></div>
+              <span class="theme-name">Night Owl</span>
+            </button>
+            <button class="theme-card" onclick="setTheme('cobalt2')" data-theme-id="cobalt2" data-theme-type="dark">
+              <div class="palette-preview" style="background: linear-gradient(90deg, #193549 20%, #dddddd 40%, #0088ff 60%, #ffc600 80%, #0088ff 100%);"></div>
+              <span class="theme-name">Cobalt2</span>
+            </button>
+          </div>
         </div>
       </div>
     </div>
