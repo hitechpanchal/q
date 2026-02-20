@@ -36,34 +36,49 @@
       });
     </script>
 
-    <div class="theme-selector">
-      <i class="fa-solid fa-palette"></i>
-      <select id="theme-select" onchange="setTheme(this.value)">
-        <option value="system">System Default</option>
-        <optgroup label="Light Themes">
-          <option value="light">Pastel Premium</option>
-          <option value="zen">Zen Forest</option>
-          <option value="solarized-light">Solarized Light</option>
-          <option value="forest-light">Forest Mist</option>
-          <option value="github-light">GitHub Light</option>
-          <option value="quiet-light">Quiet Light</option>
-          <option value="kimbie-light">Kimbie Light</option>
-          <option value="monokai-light">Monokai Light</option>
-          <option value="red-light">Red Light</option>
-        </optgroup>
-        <optgroup label="Dark Themes">
-          <option value="dark">Theo Soti (Default)</option>
-          <option value="monokai">Monokai Pro</option>
-          <option value="solarized-dark">Solarized Dark</option>
-          <option value="cyberpunk">Cyber Neon</option>
-          <option value="github-dark">GitHub Dark</option>
-          <option value="one-dark-pro">One Dark Pro</option>
-          <option value="dracula">Dracula</option>
-          <option value="night-owl">Night Owl</option>
-          <option value="cobalt2">Cobalt2</option>
-        </optgroup>
-      </select>
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">hitechpanchal</div>
+      
+      <input type="checkbox" id="nav-toggle" class="nav-toggle">
+      <label for="nav-toggle" class="nav-toggle-label">
+        <span></span>
+        <span></span>
+        <span></span>
+      </label>
+
+      <div class="nav-menu">
+        <div class="theme-selector">
+          <i class="fa-solid fa-palette"></i>
+          <select id="theme-select" onchange="setTheme(this.value)">
+            <option value="system">System Default</option>
+            <optgroup label="Light Themes">
+              <option value="light">Pastel Premium</option>
+              <option value="zen">Zen Forest</option>
+              <option value="solarized-light">Solarized Light</option>
+              <option value="forest-light">Forest Mist</option>
+              <option value="github-light">GitHub Light</option>
+              <option value="quiet-light">Quiet Light</option>
+              <option value="kimbie-light">Kimbie Light</option>
+              <option value="monokai-light">Monokai Light</option>
+              <option value="red-light">Red Light</option>
+            </optgroup>
+            <optgroup label="Dark Themes">
+              <option value="dark">Theo Soti (Default)</option>
+              <option value="monokai">Monokai Pro</option>
+              <option value="solarized-dark">Solarized Dark</option>
+              <option value="cyberpunk">Cyber Neon</option>
+              <option value="github-dark">GitHub Dark</option>
+              <option value="one-dark-pro">One Dark Pro</option>
+              <option value="dracula">Dracula</option>
+              <option value="night-owl">Night Owl</option>
+              <option value="cobalt2">Cobalt2</option>
+            </optgroup>
+          </select>
+        </div>
+      </div>
     </div>
+  </nav>
 
     <h2>Q</h2>
     <div class="container" id="content-container">
