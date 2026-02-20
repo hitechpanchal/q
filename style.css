@@ -373,6 +373,51 @@
   --sel-border: #0088ff !important;
 }
 
+[data-theme="molten-lava"] {
+  --bg-color: #003049 !important;
+  --text-primary: #fdf0d5 !important;
+  --accent-blue: #669bbc !important;
+  --accent-yellow: #c1121f !important;
+  --header-color: linear-gradient(180deg, #780000 0%, #c1121f 100%) !important;
+  --brand-color: #c1121f !important;
+  --footer-bg: rgba(0, 48, 73, 0.95) !important;
+  --sel-bg: rgba(0, 30, 45, 0.98) !important;
+  --sel-text: #fdf0d5 !important;
+  --sel-border: #780000 !important;
+  --accent-glow: rgba(120, 0, 0, 0.4) !important;
+  --unit-bg: rgba(255, 240, 213, 0.05) !important;
+}
+
+[data-theme="earthy-forest"] {
+  --bg-color: #344e41 !important;
+  --text-primary: #dad7cd !important;
+  --accent-blue: #a3b18a !important;
+  --accent-yellow: #588157 !important;
+  --header-color: linear-gradient(180deg, #3a5a40 0%, #a3b18a 100%) !important;
+  --brand-color: #a3b18a !important;
+  --footer-bg: rgba(52, 78, 65, 0.95) !important;
+  --sel-bg: rgba(58, 90, 64, 0.98) !important;
+  --sel-text: #dad7cd !important;
+  --sel-border: #a3b18a !important;
+  --accent-glow: rgba(88, 129, 87, 0.3) !important;
+  --unit-bg: rgba(218, 215, 205, 0.05) !important;
+}
+
+[data-theme="earthy-forest-light"] {
+  --bg-color: #f4f3ef !important;
+  --text-primary: #344e41 !important;
+  --accent-blue: #588157 !important;
+  --accent-yellow: #a3b18a !important;
+  --header-color: linear-gradient(180deg, #588157 0%, #344e41 100%) !important;
+  --brand-color: #344e41 !important;
+  --footer-bg: rgba(212, 211, 205, 0.95) !important;
+  --sel-bg: rgba(173, 170, 158, 0.98) !important;
+  --sel-text: #344e41 !important;
+  --sel-border: #588157 !important;
+  --accent-glow: rgba(88, 129, 87, 0.2) !important;
+  --unit-bg: rgba(52, 78, 65, 0.05) !important;
+}
+
 /* -------------------------------------------------------------------------- */
 /* 2. BASE STYLES                                                            */
 /* -------------------------------------------------------------------------- */
@@ -686,10 +731,13 @@ h2 {
   max-width: 2000px;
   margin: 0 auto;
   padding: 20px;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  grid-template-rows: 1fr;
+  column-gap: 30px;
+  row-gap: 20px;
 }
 
-@media (orientation: landscape) and (max-width: 1023px) {
+/* @media (orientation: landscape) and (max-width: 1023px) {
   .container {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -703,7 +751,7 @@ h2 {
   .container {
     grid-template-columns: repeat(6, 1fr);
   }
-}
+} */
 
 .unit {
   background: var(--unit-bg);
