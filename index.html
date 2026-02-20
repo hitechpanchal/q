@@ -6,12 +6,267 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
     <link rel="stylesheet" href="style.css" />
+    <script>
+      (function() {
+        const theme = localStorage.getItem('theme') || 'system';
+        if (theme !== 'system') {
+          document.documentElement.setAttribute('data-theme', theme);
+        }
+      })();
+    </script>
   </head>
 
   <body>
+    <script>
+      const setTheme = (theme) => {
+        const html = document.documentElement;
+        if (theme === 'system') {
+          html.removeAttribute('data-theme');
+        } else {
+          html.setAttribute('data-theme', theme);
+        }
+        localStorage.setItem('theme', theme);
+      };
+
+      // Sync dropdown on load
+      window.addEventListener('DOMContentLoaded', () => {
+        const savedTheme = localStorage.getItem('theme') || 'system';
+        const select = document.getElementById('theme-select');
+        if (select) select.value = savedTheme;
+      });
+    </script>
+
+    <div class="theme-selector">
+      <i class="fa-solid fa-palette"></i>
+      <select id="theme-select" onchange="setTheme(this.value)">
+        <option value="system">System Default</option>
+        <optgroup label="Light Themes">
+          <option value="light">Pastel Premium</option>
+          <option value="zen">Zen Forest</option>
+          <option value="solarized-light">Solarized Light</option>
+          <option value="forest-light">Forest Mist</option>
+          <option value="github-light">GitHub Light</option>
+          <option value="quiet-light">Quiet Light</option>
+          <option value="kimbie-light">Kimbie Light</option>
+          <option value="monokai-light">Monokai Light</option>
+          <option value="red-light">Red Light</option>
+        </optgroup>
+        <optgroup label="Dark Themes">
+          <option value="dark">Theo Soti (Default)</option>
+          <option value="monokai">Monokai Pro</option>
+          <option value="solarized-dark">Solarized Dark</option>
+          <option value="cyberpunk">Cyber Neon</option>
+          <option value="github-dark">GitHub Dark</option>
+          <option value="one-dark-pro">One Dark Pro</option>
+          <option value="dracula">Dracula</option>
+          <option value="night-owl">Night Owl</option>
+          <option value="cobalt2">Cobalt2</option>
+        </optgroup>
+      </select>
+    </div>
+
     <h2>Q</h2>
     <div class="container" id="content-container">
-      <!-- Content will be injected here by script.js -->
+      <section class="unit" id="tools">
+        <h3>Tools</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="https://192.168.0.1" target="_blank">Router</a></li>
+            <li><a href="https://open-slum.org/" target="_blank">Open-Slum</a></li>
+            <li><a href="https://expde.github.io/OpenDirectoryFinder/" target="_blank">Open Directory Finder</a></li>
+            <li><a href="https://www.sordum.org/" target="_blank">Sordum</a></li>
+            <li><a href="https://fmhy.net/" target="_blank">FMHY(FreeMediaHeckYeah)</a></li>
+            <li><a href="https://alternativeto.net/" target="_blank">AlternativeTo</a></li>
+            <li><a href="https://filepuma.com" target="_blank">FilePuma</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="books">
+        <h3>Books</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="https://archive.org/" target="_blank">archiveORG</a></li>
+            <li><a href="https://play.google.com/books/ebooks" target="_blank">googlePlayBooks</a></li>
+            <li><a href="https://www.mobileread.com/" target="_blank">MobileRead</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="epubEditing">
+        <h3>EPUB Editing</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="https://html-cleaner.com/" target="_blank">HTML Cleaner</a></li>
+            <li><a href="https://html-cleaner.com/case-converter/" target="_blank">caseConvertor</a></li>
+            <li><a href="https://www.sordum.org/convertcase/" target="_blank">sordiumCaseConvertor</a></li>
+            <li><a href="https://www.quackit.com/html/html_table_generator.cfm" target="_blank">tableGenerator</a></li>
+            <li><a href="https://www.textfixer.com/html/convert-url-to-html-link.php" target="_blank">urltoHtmlLinks</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="ebooksWarez">
+        <h3>eBooksWarez</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="http://forum.mobilism.org" target="_blank">mobilism</a></li>
+            <li><a href="https://1lib.sk/" target="_blank">zLibrary</a></li>
+            <li><a href="https://libgen.la/index.php" target="_blank">Genesis</a></li>
+            <li><a href="https://sanet.st/full" target="_blank">Sanet-SoftArchive</a></li>
+            <li><a href="https://audiobookbay.lu/" target="_blank">AudioBook Bay (ABB)</a></li>
+            <li><a href="https://welib.org/" target="_blank">WeLib</a></li>
+            <li><a href="https://exforums.com/" target="_blank">exForums</a></li>
+            <li><a href="https://annas-archive.org/" target="_blank">Anna's Archive</a></li>
+            <li><a href="https://ebookbb.in/" target="_blank">ebookBB</a></li>
+            <li><a href="https://ebook-hunter.org/" target="_blank">eBookHunter</a></li>
+            <li><a href="https://oceanofpdf.com/" target="_blank">OceanofPDF</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="comics">
+        <h3>Comics</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="https://readcomiconline.li/" target="_blank">Read Comics Online</a></li>
+            <li><a href="https://comicsnake.com/" target="_blank">Comic Snake</a></li>
+            <li><a href="https://getcomics.org/" target="_blank">Get Comics</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="learning">
+        <h3>Learning</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="https://www.udemy.com/home/my-courses/" target="_blank">Udemy</a></li>
+            <li><a href="https://www.theodinproject.com/dashboard" target="_blank">The Odin Project</a></li>
+            <li><a href="https://www.sololearn.com/learn" target="_blank">soloLearn</a></li>
+            <li><a href="https://cs50.harvard.edu/x/" target="_blank">CS50x</a></li>
+            <li><a href="https://scrimba.com/home" target="_blank">Scrimba</a></li>
+            <li><a href="https://infyspringboard.onwingspan.com/web" target="_blank">InfySpringBoard</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="cbtWarez">
+        <h3>CBTWarez</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="https://downloadly.ir" target="_blank">downloadlyIR</a></li>
+            <li><a href="https://downloadlynet.ir/" target="_blank">downloadlyNET</a></li>
+            <li><a href="https://hacksnation.com/" target="_blank">HacksNation</a></li>
+            <li><a href="https://devcourseweb.com/tutorials/" target="_blank">devCourse</a></li>
+            <li><a href="https://gigacourse.com/?1" target="_blank">gigaCourse</a></li>
+            <li><a href="https://freecourseweb.com/" target="_blank">FreeCourseWeb</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="graphics">
+        <h3>Graphics</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="https://www.photopea.com/" target="_blank">Photopea</a></li>
+            <li><a href="https://www.canva.com/" target="_blank">Canva</a></li>
+            <li><a href="https://www.watermarkremover.io/upload" target="_blank">watermarkRemover</a></li>
+            <li><a href="https://encycolorpedia.com/" target="_blank">encyColorpedia</a></li>
+            <li><a href="https://texteditor.com" target="_blank">textEditor</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="graphicsCBT">
+        <h3>GraphicsCBT</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="https://design.tutsplus.com" target="_blank">envatoTut+</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="warez">
+        <h3>Warez</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="https://rsload.net" target="_blank">rsLoad</a></li>
+            <li><a href="https://lrepacks.net/" target="_blank">LREpacks</a></li>
+            <li><a href="https://filecr.com/en/" target="_blank">fileCR</a></li>
+            <li><a href="https://w17.monkrus.ws/" target="_blank">m0nkrus</a></li>
+            <li><a href="https://uztracker.net/index.php" target="_blank">uZtracker</a></li>
+            <li><a href="https://getintopc.com/" target="_blank">getIntoPC</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="iraniWarez">
+        <h3>iraniWarez</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="https://download.ir/" target="_blank">downloadIR</a></li>
+            <li><a href="https://p30download.ir/" target="_blank">p30Download</a></li>
+            <li><a href="https://soft98.ir/" target="_blank">soft98</a></li>
+            <li><a href="https://www.downloadha.com/" target="_blank">downloadHa</a></li>
+            <li><a href="https://www.yasdl.com/" target="_blank">yasDl</a></li>
+            <li><a href="https://www.sarzamindownload.com/" target="_blank">sarazAminDownload</a></li>
+            <li><a href="https://www.downloadsoftware.ir/" target="_blank">downloadSoftware</a></li>
+            <li><a href="https://patoghu.com/" target="_blank">patoghu</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="torrentz">
+        <h3>Torrentz</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="https://rutracker.org/" target="_blank">ruTracker</a></li>
+            <li><a href="https://1337x.to/" target="_blank">1333x</a></li>
+            <li><a href="https://ext.to/" target="_blank">EXT.TO</a></li>
+            <li><a href="https://therarbg.com/" target="_blank">RARBG</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="android">
+        <h3>Android</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="https://www.rockmods.net/" target="_blank">RockBhaskar</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="games">
+        <h3>Games</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="https://play.chessbase.com/en/" target="_blank">ChessBase</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="social">
+        <h3>Social</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="https://www.goodreads.com/" target="_blank">goodReads</a></li>
+            <li><a href="https://vk.com/feed" target="_blank">VK</a></li>
+            <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="riptools">
+        <h3>RIPTools</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="https://en.loader.to/4/" target="_blank">Loader</a></li>
+            <li><a href="https://spotidownloader.com/en14" target="_blank">SpotiDownloader</a></li>
+            <li><a href="https://spotidown.co/" target="_blank">SpotiDown</a></li>
+          </ol>
+        </div>
+      </section>
     </div>
 
     <footer class="footer">
@@ -30,7 +285,6 @@
       </p>
     </footer>
 
-    <script src="script.js"></script>
     <script src="https://kit.fontawesome.com/f918492b80.js" crossorigin="anonymous"></script>
   </body>
 </html>
