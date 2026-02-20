@@ -21,6 +21,19 @@ const setTheme = (theme) => {
     if (navToggle) navToggle.checked = false;
 };
 
+const applyStaggeredAnimation = () => {
+    const visibleCards = Array.from(document.querySelectorAll('.theme-card')).filter(
+        (card) => card.style.display !== 'none'
+    );
+    visibleCards.forEach((card, index) => {
+        card.style.animationDelay = `${index * 0.03}s`; // FASTER STAGGER
+        // Re-trigger animation
+        card.style.animation = 'none';
+        card.offsetHeight; // Force reflow
+        card.style.animation = '';
+    });
+};
+
 const filterThemes = () => {
     const query = document.getElementById('theme-search').value.toLowerCase();
     const activeTab = document.querySelector('.filter-tab.active').getAttribute('data-filter');
@@ -33,6 +46,8 @@ const filterThemes = () => {
 
         card.style.display = matchesSearch && matchesTab ? 'flex' : 'none';
     });
+
+    applyStaggeredAnimation();
 };
 
 const setFilterTab = (tab) => {
@@ -52,6 +67,16 @@ window.addEventListener('DOMContentLoaded', () => {
         navBrand.addEventListener('click', () => {
             const navToggle = document.getElementById('nav-toggle');
             if (navToggle) navToggle.checked = false;
+        });
+    }
+
+    // Watch for drawer opening to trigger animation
+    const navToggle = document.getElementById('nav-toggle');
+    if (navToggle) {
+        navToggle.addEventListener('change', () => {
+            if (navToggle.checked) {
+                applyStaggeredAnimation();
+            }
         });
     }
 });
