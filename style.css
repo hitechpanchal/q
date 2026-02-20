@@ -418,6 +418,21 @@
   --unit-bg: rgba(52, 78, 65, 0.05) !important;
 }
 
+[data-theme="coffee"] {
+  --bg-color: #f5ebe0 !important;
+  --text-primary: #503a2b !important;
+  --accent-blue: #7f5539 !important;
+  --accent-yellow: #9c6644 !important;
+  --header-color: linear-gradient(180deg, #7f5539 0%, #b08968 100%) !important;
+  --brand-color: #7f5539 !important;
+  --footer-bg: rgba(245, 235, 224, 0.95) !important;
+  --sel-bg: rgba(221, 184, 146, 0.98) !important;
+  --sel-text: #503a2b !important;
+  --sel-border: #7f5539 !important;
+  --accent-glow: rgba(127, 85, 57, 0.1) !important;
+  --unit-bg: rgba(176, 137, 104, 0.08) !important;
+}
+
 /* -------------------------------------------------------------------------- */
 /* 2. BASE STYLES                                                            */
 /* -------------------------------------------------------------------------- */

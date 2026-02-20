@@ -1,396 +1,729 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+  <head>
+    <title>Q by Hitz</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <link rel="stylesheet" href="style.css" />
+    <script>
+      (function () {
+        const theme = localStorage.getItem("theme") || "system";
+        if (theme !== "system") {
+          document.documentElement.setAttribute("data-theme", theme);
+        }
+      })();
+    </script>
+    <script src="script.js" defer></script>
+  </head>
 
-<head>
-  <title>Q by Hitz</title>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
-  <link rel="stylesheet" href="style.css" />
-  <script>
-    (function () {
-      const theme = localStorage.getItem('theme') || 'system';
-      if (theme !== 'system') {
-        document.documentElement.setAttribute('data-theme', theme);
-      }
-    })();
-  </script>
-  <script src="script.js" defer></script>
-</head>
+  <body>
+    <nav class="navbar">
+      <div class="nav-container">
+        <div class="nav-brand">hitechpanchal</div>
 
-<body>
-  <nav class="navbar">
-    <div class="nav-container">
-      <div class="nav-brand">hitechpanchal</div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle" />
+        <label for="nav-toggle" class="nav-toggle-label">
+          <span></span>
+          <span></span>
+          <span></span>
+        </label>
 
-      <input type="checkbox" id="nav-toggle" class="nav-toggle">
-      <label for="nav-toggle" class="nav-toggle-label">
-        <span></span>
-        <span></span>
-        <span></span>
-      </label>
-
-      <div class="nav-menu">
-        <div class="theme-drawer-content">
-          <div class="drawer-header-area">
-            <h4 class="drawer-header">Themes</h4>
-            <div class="search-container">
-              <input type="text" id="theme-search" placeholder="Search themes..." oninput="filterThemes()">
+        <div class="nav-menu">
+          <div class="theme-drawer-content">
+            <div class="drawer-header-area">
+              <h4 class="drawer-header">Themes</h4>
+              <div class="search-container">
+                <input
+                  type="text"
+                  id="theme-search"
+                  placeholder="Search themes..."
+                  oninput="filterThemes()"
+                />
+              </div>
+              <div class="filter-tabs">
+                <button
+                  class="filter-tab active"
+                  data-filter="all"
+                  onclick="setFilterTab(this)"
+                >
+                  All
+                </button>
+                <button
+                  class="filter-tab"
+                  data-filter="light"
+                  onclick="setFilterTab(this)"
+                >
+                  Light
+                </button>
+                <button
+                  class="filter-tab"
+                  data-filter="dark"
+                  onclick="setFilterTab(this)"
+                >
+                  Dark
+                </button>
+              </div>
             </div>
-            <div class="filter-tabs">
-              <button class="filter-tab active" data-filter="all" onclick="setFilterTab(this)">All</button>
-              <button class="filter-tab" data-filter="light" onclick="setFilterTab(this)">Light</button>
-              <button class="filter-tab" data-filter="dark" onclick="setFilterTab(this)">Dark</button>
+
+            <div class="theme-grid">
+              <!-- SPECIAL -->
+              <button
+                class="theme-card system-card"
+                onclick="setTheme('system')"
+                data-theme-id="system"
+                data-theme-type="all"
+              >
+                <div class="palette-preview system-preview"></div>
+                <span class="theme-name">System</span>
+              </button>
+
+              <!-- LIGHT THEMES -->
+              <button
+                class="theme-card"
+                onclick="setTheme('pure-white')"
+                data-theme-id="pure-white"
+                data-theme-type="light"
+              >
+                <i class="fa-solid fa-sun"></i>
+                <span class="theme-name">Pure White</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('light')"
+                data-theme-id="light"
+                data-theme-type="light"
+              >
+                <i class="fa-solid fa-cloud-sun"></i>
+                <span class="theme-name">Pastel</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('zen')"
+                data-theme-id="zen"
+                data-theme-type="light"
+              >
+                <i class="fa-solid fa-leaf"></i>
+                <span class="theme-name">Zen</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('solarized-light')"
+                data-theme-id="solarized-light"
+                data-theme-type="light"
+              >
+                <i class="fa-solid fa-certificate"></i>
+                <span class="theme-name">Solarized</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('forest-light')"
+                data-theme-id="forest-light"
+                data-theme-type="light"
+              >
+                <i class="fa-solid fa-tree"></i>
+                <span class="theme-name">Forest</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('github-light')"
+                data-theme-id="github-light"
+                data-theme-type="light"
+              >
+                <i class="fa-brands fa-github"></i>
+                <span class="theme-name">GitHub</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('quiet-light')"
+                data-theme-id="quiet-light"
+                data-theme-type="light"
+              >
+                <i class="fa-solid fa-moon"></i>
+                <span class="theme-name">Quiet</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('kimbie-light')"
+                data-theme-id="kimbie-light"
+                data-theme-type="light"
+              >
+                <i class="fa-solid fa-fingerprint"></i>
+                <span class="theme-name">Kimbie</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('monokai-light')"
+                data-theme-id="monokai-light"
+                data-theme-type="light"
+              >
+                <i class="fa-solid fa-code"></i>
+                <span class="theme-name">Monokai L</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('red-light')"
+                data-theme-id="red-light"
+                data-theme-type="light"
+              >
+                <i class="fa-solid fa-fire"></i>
+                <span class="theme-name">Red Light</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('earthy-forest-light')"
+                data-theme-id="earthy-forest-light"
+                data-theme-type="light"
+              >
+                <i class="fa-solid fa-leaf"></i>
+                <span class="theme-name">Forest Mist</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('coffee')"
+                data-theme-id="coffee"
+                data-theme-type="light"
+              >
+                <i class="fa-solid fa-mug-hot"></i>
+                <span class="theme-name">Coffee</span>
+              </button>
+
+              <!-- DARK THEMES -->
+              <button
+                class="theme-card"
+                onclick="setTheme('pure-black')"
+                data-theme-id="pure-black"
+                data-theme-type="dark"
+              >
+                <i class="fa-solid fa-moon"></i>
+                <span class="theme-name">Pure Black</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('dark')"
+                data-theme-id="dark"
+                data-theme-type="dark"
+              >
+                <i class="fa-solid fa-bolt"></i>
+                <span class="theme-name">Theo Soti</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('monokai')"
+                data-theme-id="monokai"
+                data-theme-type="dark"
+              >
+                <i class="fa-solid fa-terminal"></i>
+                <span class="theme-name">Monokai</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('solarized-dark')"
+                data-theme-id="solarized-dark"
+                data-theme-type="dark"
+              >
+                <i class="fa-solid fa-certificate"></i>
+                <span class="theme-name">Solarized D</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('cyberpunk')"
+                data-theme-id="cyberpunk"
+                data-theme-type="dark"
+              >
+                <i class="fa-solid fa-microchip"></i>
+                <span class="theme-name">Cyberneon</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('github-dark')"
+                data-theme-id="github-dark"
+                data-theme-type="dark"
+              >
+                <i class="fa-brands fa-github"></i>
+                <span class="theme-name">GitHub D</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('one-dark-pro')"
+                data-theme-id="one-dark-pro"
+                data-theme-type="dark"
+              >
+                <i class="fa-solid fa-atom"></i>
+                <span class="theme-name">One Dark</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('dracula')"
+                data-theme-id="dracula"
+                data-theme-type="dark"
+              >
+                <i class="fa-solid fa-ghost"></i>
+                <span class="theme-name">Dracula</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('night-owl')"
+                data-theme-id="night-owl"
+                data-theme-type="dark"
+              >
+                <i class="fa-solid fa-eye"></i>
+                <span class="theme-name">Night Owl</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('cobalt2')"
+                data-theme-id="cobalt2"
+                data-theme-type="dark"
+              >
+                <i class="fa-solid fa-gem"></i>
+                <span class="theme-name">Cobalt2</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('molten-lava')"
+                data-theme-id="molten-lava"
+                data-theme-type="dark"
+              >
+                <i class="fa-solid fa-volcano"></i>
+                <span class="theme-name">Molten Lava</span>
+              </button>
+              <button
+                class="theme-card"
+                onclick="setTheme('earthy-forest')"
+                data-theme-id="earthy-forest"
+                data-theme-type="dark"
+              >
+                <i class="fa-solid fa-tree"></i>
+                <span class="theme-name">Earthy Forest</span>
+              </button>
             </div>
-          </div>
-
-          <div class="theme-grid">
-            <!-- SPECIAL -->
-            <button class="theme-card system-card" onclick="setTheme('system')" data-theme-id="system"
-              data-theme-type="all">
-              <div class="palette-preview system-preview"></div>
-              <span class="theme-name">System</span>
-            </button>
-
-            <!-- LIGHT THEMES -->
-            <button class="theme-card" onclick="setTheme('pure-white')" data-theme-id="pure-white"
-              data-theme-type="light">
-              <i class="fa-solid fa-sun"></i>
-              <span class="theme-name">Pure White</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('light')" data-theme-id="light" data-theme-type="light">
-              <i class="fa-solid fa-cloud-sun"></i>
-              <span class="theme-name">Pastel</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('zen')" data-theme-id="zen" data-theme-type="light">
-              <i class="fa-solid fa-leaf"></i>
-              <span class="theme-name">Zen</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('solarized-light')" data-theme-id="solarized-light"
-              data-theme-type="light">
-              <i class="fa-solid fa-certificate"></i>
-              <span class="theme-name">Solarized</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('forest-light')" data-theme-id="forest-light"
-              data-theme-type="light">
-              <i class="fa-solid fa-tree"></i>
-              <span class="theme-name">Forest</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('github-light')" data-theme-id="github-light"
-              data-theme-type="light">
-              <i class="fa-brands fa-github"></i>
-              <span class="theme-name">GitHub</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('quiet-light')" data-theme-id="quiet-light"
-              data-theme-type="light">
-              <i class="fa-solid fa-moon"></i>
-              <span class="theme-name">Quiet</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('kimbie-light')" data-theme-id="kimbie-light"
-              data-theme-type="light">
-              <i class="fa-solid fa-fingerprint"></i>
-              <span class="theme-name">Kimbie</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('monokai-light')" data-theme-id="monokai-light"
-              data-theme-type="light">
-              <i class="fa-solid fa-code"></i>
-              <span class="theme-name">Monokai L</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('red-light')" data-theme-id="red-light"
-              data-theme-type="light">
-              <i class="fa-solid fa-fire"></i>
-              <span class="theme-name">Red Light</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('earthy-forest-light')" data-theme-id="earthy-forest-light"
-              data-theme-type="light">
-              <i class="fa-solid fa-leaf"></i>
-              <span class="theme-name">Forest Mist</span>
-            </button>
-
-            <!-- DARK THEMES -->
-            <button class="theme-card" onclick="setTheme('pure-black')" data-theme-id="pure-black"
-              data-theme-type="dark">
-              <i class="fa-solid fa-moon"></i>
-              <span class="theme-name">Pure Black</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('dark')" data-theme-id="dark" data-theme-type="dark">
-              <i class="fa-solid fa-bolt"></i>
-              <span class="theme-name">Theo Soti</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('monokai')" data-theme-id="monokai" data-theme-type="dark">
-              <i class="fa-solid fa-terminal"></i>
-              <span class="theme-name">Monokai</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('solarized-dark')" data-theme-id="solarized-dark"
-              data-theme-type="dark">
-              <i class="fa-solid fa-certificate"></i>
-              <span class="theme-name">Solarized D</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('cyberpunk')" data-theme-id="cyberpunk" data-theme-type="dark">
-              <i class="fa-solid fa-microchip"></i>
-              <span class="theme-name">Cyberneon</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('github-dark')" data-theme-id="github-dark"
-              data-theme-type="dark">
-              <i class="fa-brands fa-github"></i>
-              <span class="theme-name">GitHub D</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('one-dark-pro')" data-theme-id="one-dark-pro"
-              data-theme-type="dark">
-              <i class="fa-solid fa-atom"></i>
-              <span class="theme-name">One Dark</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('dracula')" data-theme-id="dracula" data-theme-type="dark">
-              <i class="fa-solid fa-ghost"></i>
-              <span class="theme-name">Dracula</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('night-owl')" data-theme-id="night-owl" data-theme-type="dark">
-              <i class="fa-solid fa-eye"></i>
-              <span class="theme-name">Night Owl</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('cobalt2')" data-theme-id="cobalt2" data-theme-type="dark">
-              <i class="fa-solid fa-gem"></i>
-              <span class="theme-name">Cobalt2</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('molten-lava')" data-theme-id="molten-lava"
-              data-theme-type="dark">
-              <i class="fa-solid fa-volcano"></i>
-              <span class="theme-name">Molten Lava</span>
-            </button>
-            <button class="theme-card" onclick="setTheme('earthy-forest')" data-theme-id="earthy-forest"
-              data-theme-type="dark">
-              <i class="fa-solid fa-tree"></i>
-              <span class="theme-name">Earthy Forest</span>
-            </button>
           </div>
         </div>
       </div>
+    </nav>
+
+    <h2>Q</h2>
+    <div class="container" id="content-container">
+      <section class="unit" id="tools">
+        <h3><i class="fa-solid fa-screwdriver-wrench"></i>Tools</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="https://192.168.0.1" target="_blank">Router</a></li>
+            <li>
+              <a href="https://open-slum.org/" target="_blank">Open-Slum</a>
+            </li>
+            <li>
+              <a
+                href="https://expde.github.io/OpenDirectoryFinder/"
+                target="_blank"
+                >Open Directory Finder</a
+              >
+            </li>
+            <li>
+              <a href="https://www.sordum.org/" target="_blank">Sordum</a>
+            </li>
+            <li>
+              <a href="https://fmhy.net/" target="_blank"
+                >FMHY(FreeMediaHeckYeah)</a
+              >
+            </li>
+            <li>
+              <a href="https://alternativeto.net/" target="_blank"
+                >AlternativeTo</a
+              >
+            </li>
+            <li><a href="https://filepuma.com" target="_blank">FilePuma</a></li>
+            <li><a href="https://massgrave.dev/" target="_blank">MAS</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="books">
+        <h3><i class="fa-solid fa-book-open"></i>Books</h3>
+        <div class="flex-container">
+          <ol>
+            <li>
+              <a href="https://archive.org/" target="_blank">archiveORG</a>
+            </li>
+            <li>
+              <a href="https://play.google.com/books/ebooks" target="_blank"
+                >googlePlayBooks</a
+              >
+            </li>
+            <li>
+              <a href="https://www.mobileread.com/" target="_blank"
+                >MobileRead</a
+              >
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="epubEditing">
+        <h3><i class="fa-solid fa-pen-nib"></i>EPUB Editing</h3>
+        <div class="flex-container">
+          <ol>
+            <li>
+              <a href="https://html-cleaner.com/" target="_blank"
+                >HTML Cleaner</a
+              >
+            </li>
+            <li>
+              <a href="https://html-cleaner.com/case-converter/" target="_blank"
+                >caseConvertor</a
+              >
+            </li>
+            <li>
+              <a href="https://www.sordum.org/convertcase/" target="_blank"
+                >sordiumCaseConvertor</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.quackit.com/html/html_table_generator.cfm"
+                target="_blank"
+                >tableGenerator</a
+              >
+            </li>
+            <li>
+              <a
+                href="https://www.textfixer.com/html/convert-url-to-html-link.php"
+                target="_blank"
+                >urltoHtmlLinks</a
+              >
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="ebooksWarez">
+        <h3><i class="fa-solid fa-box-open"></i>eBooksWarez</h3>
+        <div class="flex-container">
+          <ol>
+            <li>
+              <a href="http://forum.mobilism.org" target="_blank">mobilism</a>
+            </li>
+            <li><a href="https://1lib.sk/" target="_blank">zLibrary</a></li>
+            <li>
+              <a href="https://libgen.la/index.php" target="_blank">Genesis</a>
+            </li>
+            <li>
+              <a href="https://sanet.st/full" target="_blank"
+                >Sanet-SoftArchive</a
+              >
+            </li>
+            <li>
+              <a href="https://audiobookbay.lu/" target="_blank"
+                >AudioBook Bay (ABB)</a
+              >
+            </li>
+            <li><a href="https://welib.org/" target="_blank">WeLib</a></li>
+            <li>
+              <a href="https://exforums.com/" target="_blank">exForums</a>
+            </li>
+            <li>
+              <a href="https://annas-archive.org/" target="_blank"
+                >Anna's Archive</a
+              >
+            </li>
+            <li><a href="https://ebookbb.in/" target="_blank">ebookBB</a></li>
+            <li>
+              <a href="https://ebook-hunter.org/" target="_blank"
+                >eBookHunter</a
+              >
+            </li>
+            <li>
+              <a href="https://oceanofpdf.com/" target="_blank">OceanofPDF</a>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="comics">
+        <h3><i class="fa-solid fa-mask"></i>Comics</h3>
+        <div class="flex-container">
+          <ol>
+            <li>
+              <a href="https://readcomiconline.li/" target="_blank"
+                >Read Comics Online</a
+              >
+            </li>
+            <li>
+              <a href="https://comicsnake.com/" target="_blank">Comic Snake</a>
+            </li>
+            <li>
+              <a href="https://getcomics.org/" target="_blank">Get Comics</a>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="learning">
+        <h3><i class="fa-solid fa-graduation-cap"></i>Learning</h3>
+        <div class="flex-container">
+          <ol>
+            <li>
+              <a href="https://www.udemy.com/home/my-courses/" target="_blank"
+                >Udemy</a
+              >
+            </li>
+            <li>
+              <a href="https://www.theodinproject.com/dashboard" target="_blank"
+                >The Odin Project</a
+              >
+            </li>
+            <li>
+              <a href="https://www.sololearn.com/learn" target="_blank"
+                >soloLearn</a
+              >
+            </li>
+            <li>
+              <a href="https://cs50.harvard.edu/x/" target="_blank">CS50x</a>
+            </li>
+            <li>
+              <a href="https://scrimba.com/home" target="_blank">Scrimba</a>
+            </li>
+            <li>
+              <a
+                href="https://infyspringboard.onwingspan.com/web"
+                target="_blank"
+                >InfySpringBoard</a
+              >
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="cbtWarez">
+        <h3><i class="fa-solid fa-laptop-code"></i>CBTWarez</h3>
+        <div class="flex-container">
+          <ol>
+            <li>
+              <a href="https://downloadly.ir" target="_blank">downloadlyIR</a>
+            </li>
+            <li>
+              <a href="https://downloadlynet.ir/" target="_blank"
+                >downloadlyNET</a
+              >
+            </li>
+            <li>
+              <a href="https://hacksnation.com/" target="_blank">HacksNation</a>
+            </li>
+            <li>
+              <a href="https://devcourseweb.com/tutorials/" target="_blank"
+                >devCourse</a
+              >
+            </li>
+            <li>
+              <a href="https://gigacourse.com/?1" target="_blank">gigaCourse</a>
+            </li>
+            <li>
+              <a href="https://freecourseweb.com/" target="_blank"
+                >FreeCourseWeb</a
+              >
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="graphics">
+        <h3><i class="fa-solid fa-palette"></i>Graphics</h3>
+        <div class="flex-container">
+          <ol>
+            <li>
+              <a href="https://www.photopea.com/" target="_blank">Photopea</a>
+            </li>
+            <li><a href="https://www.canva.com/" target="_blank">Canva</a></li>
+            <li>
+              <a href="https://www.watermarkremover.io/upload" target="_blank"
+                >watermarkRemover</a
+              >
+            </li>
+            <li>
+              <a href="https://encycolorpedia.com/" target="_blank"
+                >encyColorpedia</a
+              >
+            </li>
+            <li>
+              <a href="https://texteditor.com" target="_blank">textEditor</a>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="graphicsCBT">
+        <h3><i class="fa-solid fa-chalkboard-user"></i>GraphicsCBT</h3>
+        <div class="flex-container">
+          <ol>
+            <li>
+              <a href="https://design.tutsplus.com" target="_blank"
+                >envatoTut+</a
+              >
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="warez">
+        <h3><i class="fa-solid fa-hard-drive"></i>Warez</h3>
+        <div class="flex-container">
+          <ol>
+            <li><a href="https://rsload.net" target="_blank">rsLoad</a></li>
+            <li>
+              <a href="https://lrepacks.net/" target="_blank">LREpacks</a>
+            </li>
+            <li><a href="https://filecr.com/en/" target="_blank">fileCR</a></li>
+            <li>
+              <a href="https://w17.monkrus.ws/" target="_blank">m0nkrus</a>
+            </li>
+            <li>
+              <a href="https://uztracker.net/index.php" target="_blank"
+                >uZtracker</a
+              >
+            </li>
+            <li>
+              <a href="https://getintopc.com/" target="_blank">getIntoPC</a>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="iraniWarez">
+        <h3><i class="fa-solid fa-globe"></i>iraniWarez</h3>
+        <div class="flex-container">
+          <ol>
+            <li>
+              <a href="https://download.ir/" target="_blank">downloadIR</a>
+            </li>
+            <li>
+              <a href="https://p30download.ir/" target="_blank">p30Download</a>
+            </li>
+            <li><a href="https://soft98.ir/" target="_blank">soft98</a></li>
+            <li>
+              <a href="https://www.downloadha.com/" target="_blank"
+                >downloadHa</a
+              >
+            </li>
+            <li><a href="https://www.yasdl.com/" target="_blank">yasDl</a></li>
+            <li>
+              <a href="https://www.sarzamindownload.com/" target="_blank"
+                >sarazAminDownload</a
+              >
+            </li>
+            <li>
+              <a href="https://www.downloadsoftware.ir/" target="_blank"
+                >downloadSoftware</a
+              >
+            </li>
+            <li><a href="https://patoghu.com/" target="_blank">patoghu</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="torrentz">
+        <h3><i class="fa-solid fa-magnet"></i>Torrentz</h3>
+        <div class="flex-container">
+          <ol>
+            <li>
+              <a href="https://rutracker.org/" target="_blank">ruTracker</a>
+            </li>
+            <li><a href="https://1337x.to/" target="_blank">1333x</a></li>
+            <li><a href="https://ext.to/" target="_blank">EXT.TO</a></li>
+            <li><a href="https://therarbg.com/" target="_blank">RARBG</a></li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="android">
+        <h3><i class="fa-brands fa-android"></i>Android</h3>
+        <div class="flex-container">
+          <ol>
+            <li>
+              <a href="https://www.rockmods.net/" target="_blank"
+                >RockBhaskar</a
+              >
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="games">
+        <h3><i class="fa-solid fa-gamepad"></i>Games</h3>
+        <div class="flex-container">
+          <ol>
+            <li>
+              <a href="https://play.chessbase.com/en/" target="_blank"
+                >ChessBase</a
+              >
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="social">
+        <h3><i class="fa-solid fa-share-nodes"></i>Social</h3>
+        <div class="flex-container">
+          <ol>
+            <li>
+              <a href="https://www.goodreads.com/" target="_blank">goodReads</a>
+            </li>
+            <li><a href="https://vk.com/feed" target="_blank">VK</a></li>
+            <li>
+              <a href="https://www.instagram.com" target="_blank">Instagram</a>
+            </li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="unit" id="riptools">
+        <h3><i class="fa-solid fa-scissors"></i>RIPTools</h3>
+        <div class="flex-container">
+          <ol>
+            <li>
+              <a href="https://en.loader.to/4/" target="_blank">Loader</a>
+            </li>
+            <li>
+              <a href="https://spotidownloader.com/en14" target="_blank"
+                >SpotiDownloader</a
+              >
+            </li>
+            <li>
+              <a href="https://spotidown.co/" target="_blank">SpotiDown</a>
+            </li>
+          </ol>
+        </div>
+      </section>
     </div>
-  </nav>
 
-  <h2>Q</h2>
-  <div class="container" id="content-container">
-    <section class="unit" id="tools">
-      <h3><i class="fa-solid fa-screwdriver-wrench"></i>Tools</h3>
-      <div class="flex-container">
-        <ol>
-          <li><a href="https://192.168.0.1" target="_blank">Router</a></li>
-          <li><a href="https://open-slum.org/" target="_blank">Open-Slum</a></li>
-          <li><a href="https://expde.github.io/OpenDirectoryFinder/" target="_blank">Open Directory Finder</a></li>
-          <li><a href="https://www.sordum.org/" target="_blank">Sordum</a></li>
-          <li><a href="https://fmhy.net/" target="_blank">FMHY(FreeMediaHeckYeah)</a></li>
-          <li><a href="https://alternativeto.net/" target="_blank">AlternativeTo</a></li>
-          <li><a href="https://filepuma.com" target="_blank">FilePuma</a></li>
-          <li><a href="https://massgrave.dev/" target="_blank">MAS</a></li>
-        </ol>
-      </div>
-    </section>
+    <footer class="footer">
+      <p>
+        <a href="mailto:hslinsys@gmail.com">
+          <i
+            class="fa-solid fa-envelope"
+            style="font-size: 32px; color: var(--myblue)"
+          ></i>
+        </a>
+        <a href="https://hitechpanchal.github.io/Profile/" target="_blank">
+          <i
+            class="fa-solid fa-id-card"
+            style="font-size: 32px; color: var(--my-yellow)"
+          ></i>
+        </a>
+        <a href="https://www.instagram.com/hitechpanchal/" target="_blank">
+          <i
+            class="fa-brands fa-instagram"
+            style="font-size: 32px; color: var(--my-blue)"
+          ></i>
+        </a>
+        <br />
+        created by: hitechPanchal
+      </p>
+    </footer>
 
-    <section class="unit" id="books">
-      <h3><i class="fa-solid fa-book-open"></i>Books</h3>
-      <div class="flex-container">
-        <ol>
-          <li><a href="https://archive.org/" target="_blank">archiveORG</a></li>
-          <li><a href="https://play.google.com/books/ebooks" target="_blank">googlePlayBooks</a></li>
-          <li><a href="https://www.mobileread.com/" target="_blank">MobileRead</a></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="unit" id="epubEditing">
-      <h3><i class="fa-solid fa-pen-nib"></i>EPUB Editing</h3>
-      <div class="flex-container">
-        <ol>
-          <li><a href="https://html-cleaner.com/" target="_blank">HTML Cleaner</a></li>
-          <li><a href="https://html-cleaner.com/case-converter/" target="_blank">caseConvertor</a></li>
-          <li><a href="https://www.sordum.org/convertcase/" target="_blank">sordiumCaseConvertor</a></li>
-          <li><a href="https://www.quackit.com/html/html_table_generator.cfm" target="_blank">tableGenerator</a></li>
-          <li><a href="https://www.textfixer.com/html/convert-url-to-html-link.php" target="_blank">urltoHtmlLinks</a>
-          </li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="unit" id="ebooksWarez">
-      <h3><i class="fa-solid fa-box-open"></i>eBooksWarez</h3>
-      <div class="flex-container">
-        <ol>
-          <li><a href="http://forum.mobilism.org" target="_blank">mobilism</a></li>
-          <li><a href="https://1lib.sk/" target="_blank">zLibrary</a></li>
-          <li><a href="https://libgen.la/index.php" target="_blank">Genesis</a></li>
-          <li><a href="https://sanet.st/full" target="_blank">Sanet-SoftArchive</a></li>
-          <li><a href="https://audiobookbay.lu/" target="_blank">AudioBook Bay (ABB)</a></li>
-          <li><a href="https://welib.org/" target="_blank">WeLib</a></li>
-          <li><a href="https://exforums.com/" target="_blank">exForums</a></li>
-          <li><a href="https://annas-archive.org/" target="_blank">Anna's Archive</a></li>
-          <li><a href="https://ebookbb.in/" target="_blank">ebookBB</a></li>
-          <li><a href="https://ebook-hunter.org/" target="_blank">eBookHunter</a></li>
-          <li><a href="https://oceanofpdf.com/" target="_blank">OceanofPDF</a></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="unit" id="comics">
-      <h3><i class="fa-solid fa-mask"></i>Comics</h3>
-      <div class="flex-container">
-        <ol>
-          <li><a href="https://readcomiconline.li/" target="_blank">Read Comics Online</a></li>
-          <li><a href="https://comicsnake.com/" target="_blank">Comic Snake</a></li>
-          <li><a href="https://getcomics.org/" target="_blank">Get Comics</a></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="unit" id="learning">
-      <h3><i class="fa-solid fa-graduation-cap"></i>Learning</h3>
-      <div class="flex-container">
-        <ol>
-          <li><a href="https://www.udemy.com/home/my-courses/" target="_blank">Udemy</a></li>
-          <li><a href="https://www.theodinproject.com/dashboard" target="_blank">The Odin Project</a></li>
-          <li><a href="https://www.sololearn.com/learn" target="_blank">soloLearn</a></li>
-          <li><a href="https://cs50.harvard.edu/x/" target="_blank">CS50x</a></li>
-          <li><a href="https://scrimba.com/home" target="_blank">Scrimba</a></li>
-          <li><a href="https://infyspringboard.onwingspan.com/web" target="_blank">InfySpringBoard</a></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="unit" id="cbtWarez">
-      <h3><i class="fa-solid fa-laptop-code"></i>CBTWarez</h3>
-      <div class="flex-container">
-        <ol>
-          <li><a href="https://downloadly.ir" target="_blank">downloadlyIR</a></li>
-          <li><a href="https://downloadlynet.ir/" target="_blank">downloadlyNET</a></li>
-          <li><a href="https://hacksnation.com/" target="_blank">HacksNation</a></li>
-          <li><a href="https://devcourseweb.com/tutorials/" target="_blank">devCourse</a></li>
-          <li><a href="https://gigacourse.com/?1" target="_blank">gigaCourse</a></li>
-          <li><a href="https://freecourseweb.com/" target="_blank">FreeCourseWeb</a></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="unit" id="graphics">
-      <h3><i class="fa-solid fa-palette"></i>Graphics</h3>
-      <div class="flex-container">
-        <ol>
-          <li><a href="https://www.photopea.com/" target="_blank">Photopea</a></li>
-          <li><a href="https://www.canva.com/" target="_blank">Canva</a></li>
-          <li><a href="https://www.watermarkremover.io/upload" target="_blank">watermarkRemover</a></li>
-          <li><a href="https://encycolorpedia.com/" target="_blank">encyColorpedia</a></li>
-          <li><a href="https://texteditor.com" target="_blank">textEditor</a></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="unit" id="graphicsCBT">
-      <h3><i class="fa-solid fa-chalkboard-user"></i>GraphicsCBT</h3>
-      <div class="flex-container">
-        <ol>
-          <li><a href="https://design.tutsplus.com" target="_blank">envatoTut+</a></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="unit" id="warez">
-      <h3><i class="fa-solid fa-hard-drive"></i>Warez</h3>
-      <div class="flex-container">
-        <ol>
-          <li><a href="https://rsload.net" target="_blank">rsLoad</a></li>
-          <li><a href="https://lrepacks.net/" target="_blank">LREpacks</a></li>
-          <li><a href="https://filecr.com/en/" target="_blank">fileCR</a></li>
-          <li><a href="https://w17.monkrus.ws/" target="_blank">m0nkrus</a></li>
-          <li><a href="https://uztracker.net/index.php" target="_blank">uZtracker</a></li>
-          <li><a href="https://getintopc.com/" target="_blank">getIntoPC</a></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="unit" id="iraniWarez">
-      <h3><i class="fa-solid fa-globe"></i>iraniWarez</h3>
-      <div class="flex-container">
-        <ol>
-          <li><a href="https://download.ir/" target="_blank">downloadIR</a></li>
-          <li><a href="https://p30download.ir/" target="_blank">p30Download</a></li>
-          <li><a href="https://soft98.ir/" target="_blank">soft98</a></li>
-          <li><a href="https://www.downloadha.com/" target="_blank">downloadHa</a></li>
-          <li><a href="https://www.yasdl.com/" target="_blank">yasDl</a></li>
-          <li><a href="https://www.sarzamindownload.com/" target="_blank">sarazAminDownload</a></li>
-          <li><a href="https://www.downloadsoftware.ir/" target="_blank">downloadSoftware</a></li>
-          <li><a href="https://patoghu.com/" target="_blank">patoghu</a></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="unit" id="torrentz">
-      <h3><i class="fa-solid fa-magnet"></i>Torrentz</h3>
-      <div class="flex-container">
-        <ol>
-          <li><a href="https://rutracker.org/" target="_blank">ruTracker</a></li>
-          <li><a href="https://1337x.to/" target="_blank">1333x</a></li>
-          <li><a href="https://ext.to/" target="_blank">EXT.TO</a></li>
-          <li><a href="https://therarbg.com/" target="_blank">RARBG</a></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="unit" id="android">
-      <h3><i class="fa-brands fa-android"></i>Android</h3>
-      <div class="flex-container">
-        <ol>
-          <li><a href="https://www.rockmods.net/" target="_blank">RockBhaskar</a></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="unit" id="games">
-      <h3><i class="fa-solid fa-gamepad"></i>Games</h3>
-      <div class="flex-container">
-        <ol>
-          <li><a href="https://play.chessbase.com/en/" target="_blank">ChessBase</a></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="unit" id="social">
-      <h3><i class="fa-solid fa-share-nodes"></i>Social</h3>
-      <div class="flex-container">
-        <ol>
-          <li><a href="https://www.goodreads.com/" target="_blank">goodReads</a></li>
-          <li><a href="https://vk.com/feed" target="_blank">VK</a></li>
-          <li><a href="https://www.instagram.com" target="_blank">Instagram</a></li>
-        </ol>
-      </div>
-    </section>
-
-    <section class="unit" id="riptools">
-      <h3><i class="fa-solid fa-scissors"></i>RIPTools</h3>
-      <div class="flex-container">
-        <ol>
-          <li><a href="https://en.loader.to/4/" target="_blank">Loader</a></li>
-          <li><a href="https://spotidownloader.com/en14" target="_blank">SpotiDownloader</a></li>
-          <li><a href="https://spotidown.co/" target="_blank">SpotiDown</a></li>
-        </ol>
-      </div>
-    </section>
-  </div>
-
-  <footer class="footer">
-    <p>
-      <a href="mailto:hslinsys@gmail.com">
-        <i class="fa-solid fa-envelope" style="font-size: 32px; color: var(--myblue)"></i>
-      </a>
-      <a href="https://hitechpanchal.github.io/Profile/" target="_blank">
-        <i class="fa-solid fa-id-card" style="font-size: 32px; color: var(--my-yellow)"></i>
-      </a>
-      <a href="https://www.instagram.com/hitechpanchal/" target="_blank">
-        <i class="fa-brands fa-instagram" style="font-size: 32px; color: var(--my-blue)"></i>
-      </a>
-      <br />
-      created by: hitechPanchal
-    </p>
-  </footer>
-
-  <script src="https://kit.fontawesome.com/f918492b80.js" crossorigin="anonymous"></script>
-</body>
-
+    <script
+      src="https://kit.fontawesome.com/f918492b80.js"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
