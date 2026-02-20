@@ -26,19 +26,27 @@
           html.setAttribute('data-theme', theme);
         }
         localStorage.setItem('theme', theme);
+        
+        // Update Active State in Drawer
+        document.querySelectorAll('.theme-item').forEach(item => {
+          item.classList.toggle('active', item.getAttribute('data-theme-id') === theme);
+        });
+        
+        // Auto-close hamburger menu if it's open
+        const navToggle = document.getElementById('nav-toggle');
+        if (navToggle) navToggle.checked = false;
       };
 
-      // Sync dropdown on load
+      // Sync active theme on load
       window.addEventListener('DOMContentLoaded', () => {
-        const savedTheme = localStorage.getItem('theme') || 'system';
-        const select = document.getElementById('theme-select');
-        if (select) select.value = savedTheme;
+        const theme = localStorage.getItem('theme') || 'system';
+        setTheme(theme);
       });
     </script>
 
   <nav class="navbar">
     <div class="nav-container">
-      <div class="nav-brand">hitechpanchal</div>
+      <div class="nav-brand" onclick="window.scrollTo({top: 0, behavior: 'smooth'})">hitechpanchal</div>
       
       <input type="checkbox" id="nav-toggle" class="nav-toggle">
       <label for="nav-toggle" class="nav-toggle-label">
@@ -48,33 +56,102 @@
       </label>
 
       <div class="nav-menu">
-        <div class="theme-selector">
-          <i class="fa-solid fa-palette"></i>
-          <select id="theme-select" onchange="setTheme(this.value)">
-            <option value="system">System Default</option>
-            <optgroup label="Light Themes">
-              <option value="light">Pastel Premium</option>
-              <option value="zen">Zen Forest</option>
-              <option value="solarized-light">Solarized Light</option>
-              <option value="forest-light">Forest Mist</option>
-              <option value="github-light">GitHub Light</option>
-              <option value="quiet-light">Quiet Light</option>
-              <option value="kimbie-light">Kimbie Light</option>
-              <option value="monokai-light">Monokai Light</option>
-              <option value="red-light">Red Light</option>
-            </optgroup>
-            <optgroup label="Dark Themes">
-              <option value="dark">Theo Soti (Default)</option>
-              <option value="monokai">Monokai Pro</option>
-              <option value="solarized-dark">Solarized Dark</option>
-              <option value="cyberpunk">Cyber Neon</option>
-              <option value="github-dark">GitHub Dark</option>
-              <option value="one-dark-pro">One Dark Pro</option>
-              <option value="dracula">Dracula</option>
-              <option value="night-owl">Night Owl</option>
-              <option value="cobalt2">Cobalt2</option>
-            </optgroup>
-          </select>
+        <div class="theme-drawer-content">
+          <h4 class="drawer-header">Themes</h4>
+          
+          <div class="theme-group">
+            <h5>Light</h5>
+            <div class="theme-list">
+              <button class="theme-item" onclick="setTheme('pure-white')" data-theme-id="pure-white">
+                <span class="swatch" style="background: #ffffff; border: 1px solid #ddd;"></span>
+                Pure White
+              </button>
+              <button class="theme-item" onclick="setTheme('light')" data-theme-id="light">
+                <span class="swatch" style="background: #fdfcfb;"></span>
+                Pastel
+              </button>
+              <button class="theme-item" onclick="setTheme('zen')" data-theme-id="zen">
+                <span class="swatch" style="background: #f4f1ea;"></span>
+                Zen
+              </button>
+              <button class="theme-item" onclick="setTheme('solarized-light')" data-theme-id="solarized-light">
+                <span class="swatch" style="background: #fdf6e3;"></span>
+                Solarized
+              </button>
+              <button class="theme-item" onclick="setTheme('forest-light')" data-theme-id="forest-light">
+                <span class="swatch" style="background: #f1f3f0;"></span>
+                Forest
+              </button>
+              <button class="theme-item" onclick="setTheme('github-light')" data-theme-id="github-light">
+                <span class="swatch" style="background: #ffffff; border: 1px solid #0366d6;"></span>
+                GitHub
+              </button>
+              <button class="theme-item" onclick="setTheme('quiet-light')" data-theme-id="quiet-light">
+                <span class="swatch" style="background: #f5f5f5;"></span>
+                Quiet
+              </button>
+              <button class="theme-item" onclick="setTheme('kimbie-light')" data-theme-id="kimbie-light">
+                <span class="swatch" style="background: #fbebd4;"></span>
+                Kimbie
+              </button>
+              <button class="theme-item" onclick="setTheme('monokai-light')" data-theme-id="monokai-light">
+                <span class="swatch" style="background: #fafafa;"></span>
+                Monokai
+              </button>
+              <button class="theme-item" onclick="setTheme('red-light')" data-theme-id="red-light">
+                <span class="swatch" style="background: #7d0000;"></span>
+                Red
+              </button>
+            </div>
+          </div>
+
+          <div class="theme-group">
+            <h5>Dark</h5>
+            <div class="theme-list">
+              <button class="theme-item" onclick="setTheme('pure-black')" data-theme-id="pure-black">
+                <span class="swatch" style="background: #000000; border: 1px solid #333;"></span>
+                Pure Black
+              </button>
+              <button class="theme-item" onclick="setTheme('dark')" data-theme-id="dark">
+                <span class="swatch" style="background: #1a1a1a;"></span>
+                Theo Soti
+              </button>
+              <button class="theme-item" onclick="setTheme('monokai')" data-theme-id="monokai">
+                <span class="swatch" style="background: #272822;"></span>
+                Monokai
+              </button>
+              <button class="theme-item" onclick="setTheme('solarized-dark')" data-theme-id="solarized-dark">
+                <span class="swatch" style="background: #002b36;"></span>
+                Solarized
+              </button>
+              <button class="theme-item" onclick="setTheme('cyberpunk')" data-theme-id="cyberpunk">
+                <span class="swatch" style="background: #0d0221;"></span>
+                Cyberneon
+              </button>
+              <button class="theme-item" onclick="setTheme('github-dark')" data-theme-id="github-dark">
+                <span class="swatch" style="background: #0d1117;"></span>
+                GitHub
+              </button>
+              <button class="theme-item" onclick="setTheme('one-dark-pro')" data-theme-id="one-dark-pro">
+                <span class="swatch" style="background: #282c34;"></span>
+                One Dark
+              </button>
+              <button class="theme-item" onclick="setTheme('dracula')" data-theme-id="dracula">
+                <span class="swatch" style="background: #282a36;"></span>
+                Dracula
+              </button>
+              <button class="theme-item" onclick="setTheme('night-owl')" data-theme-id="night-owl">
+                <span class="swatch" style="background: #011627;"></span>
+                Night Owl
+              </button>
+              <button class="theme-item" onclick="setTheme('cobalt2')" data-theme-id="cobalt2">
+                <span class="swatch" style="background: #193549;"></span>
+                Cobalt2
+              </button>
+            </div>
+          </div>
+
+          <button class="theme-item system-btn" onclick="setTheme('system')" data-theme-id="system"> Sys </button>
         </div>
       </div>
     </div>
