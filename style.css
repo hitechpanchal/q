@@ -529,10 +529,12 @@ body {
   transform: translateY(7px) rotate(45deg);
   width: 28px;
 }
+
 .nav-toggle:checked ~ .nav-toggle-label span:nth-child(2) {
   opacity: 0;
   transform: translateX(10px);
 }
+
 .nav-toggle:checked ~ .nav-toggle-label span:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
   width: 28px;
@@ -717,6 +719,7 @@ h2 {
     opacity: 0.8;
     filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.1));
   }
+
   100% {
     transform: scale(1.02);
     opacity: 1;
@@ -792,12 +795,16 @@ h3 {
   max-height: 160px;
   overflow-y: auto;
 }
+
 ol {
   list-style: none;
 }
+
 li {
   margin-bottom: 15px;
-} /* SLIGHTLY MORE SPACING */
+}
+
+/* SLIGHTLY MORE SPACING */
 a {
   color: var(--accent-blue);
   text-decoration: none;
@@ -806,6 +813,7 @@ a {
   transition: color 0.3s ease;
   display: inline-block;
 }
+
 a:hover {
   color: var(--accent-yellow);
   text-decoration: underline;
