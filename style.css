@@ -49,13 +49,14 @@
 /* --- LIGHT THEMES --- */
 [data-theme="pure-white"] {
   --bg-color: #eeeeee !important;
-  --text-primary: #333333 !important;
-  --accent-blue: #006aff !important;
-  --accent-yellow: #ff4d00 !important;
-  --header-color: #006aff !important;
+  --text-primary: #111111 !important;
+  --accent-blue: #111111 !important;
+  --accent-yellow: #555555 !important;
+  --header-color: #111111 !important;
+  --accent-glow: rgba(0, 0, 0, 0.1) !important;
   --sel-bg: rgba(255, 255, 255, 0.98) !important;
-  --sel-text: #333333 !important;
-  --sel-border: #006aff !important;
+  --sel-text: #111111 !important;
+  --sel-border: #111111 !important;
 }
 
 [data-theme="light"] {
@@ -158,14 +159,15 @@
 
 /* --- DARK THEMES --- */
 [data-theme="pure-black"] {
-  --bg-color: #333333 !important;
-  --text-primary: #dddddd !important;
-  --accent-blue: #00f0ff !important;
-  --accent-yellow: #ff00de !important;
-  --header-color: #00f0ff !important;
-  --sel-bg: rgba(10, 10, 10, 0.98) !important;
+  --bg-color: #111111 !important;
+  --text-primary: #eeeeee !important;
+  --accent-blue: #eeeeee !important;
+  --accent-yellow: #999999 !important;
+  --header-color: #eeeeee !important;
+  --accent-glow: rgba(255, 255, 255, 0.15) !important;
+  --sel-bg: rgba(30, 30, 30, 0.98) !important;
   --sel-text: #ffffff !important;
-  --sel-border: #00f0ff !important;
+  --sel-border: #eeeeee !important;
 }
 
 [data-theme="dark"] {
@@ -440,7 +442,7 @@ body {
 .theme-grid {
   display: grid;
   grid-template-columns: 1fr;
-  gap: 2px;
+  gap: 4px;
   padding: 10px 15px 60px;
 }
 
@@ -450,13 +452,28 @@ body {
   align-items: center;
   background: transparent;
   border: none;
-  padding: 12px 20px;
-  border-radius: 8px;
+  padding: 14px 20px;
+  border-radius: 12px;
   cursor: pointer;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
   position: relative;
   overflow: hidden;
   text-align: left;
+  gap: 15px;
+}
+
+.theme-card i {
+  font-size: 0.9rem;
+  width: 20px;
+  text-align: center;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.theme-card:hover i {
+  opacity: 1;
+  color: var(--accent-blue);
+  transform: scale(1.2) rotate(-5deg);
 }
 
 .theme-card:hover {
